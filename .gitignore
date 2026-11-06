@@ -1,0 +1,24 @@
+# Visual Studio Code Settings
+.vscode/
+
+# Python cache files
+__pycache__/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Virtual environment
+venv/
+
+# Data files
+data/
+
+# Environment Variable files
+.env
+.env.*
+
+# Experiment tracking files
+datasets/
+wandb/
+datasets.yaml
