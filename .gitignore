@@ -17,8 +17,11 @@ data/
 # Environment Variable files
 .env
 .env.*
+!*.example
 
 # Experiment tracking files
 datasets/
+runs/
 wandb/
 datasets.yaml
+notebooks/*.pt
