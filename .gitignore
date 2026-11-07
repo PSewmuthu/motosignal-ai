@@ -23,5 +23,6 @@ data/
 datasets/
 runs/
 wandb/
+notebooks/outputs/
 datasets.yaml
 notebooks/*.pt
