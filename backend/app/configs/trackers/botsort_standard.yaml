@@ -1,0 +1,11 @@
+# Straightforward BoT-SORT starting point for a fixed CCTV camera.
+# Tune only after reviewing annotated examples from your own video.
+tracker_type: botsort
+track_high_thresh: 0.25
+track_low_thresh: 0.10
+new_track_thresh: 0.30
+track_buffer: 30
+match_thresh: 0.80
+fuse_score: True
+gmc_method: none
+with_reid: False
