@@ -1,0 +1,19 @@
+# Documentation template. Submit equivalent JSON through POST /api/jobs.
+mode: same_camera
+stop_line: []                 # Exactly two normalized endpoints [{x: 0..1, y: 0..1}, ...]
+approach_side: either         # positive | negative | either
+direction: all
+signal_timeline: []           # Supply manually verified phases; do not use illustrative times as facts.
+rear_time_offset_seconds: 0.0
+min_travel_seconds: 0.0
+max_travel_seconds: 15.0
+frame_stride: 1
+min_track_observations: 3
+max_track_gap_seconds: 1.5
+
+# YOLO tracking uses Ultralytics model.track with persistent BoT-SORT state.
+# Frame stride 1 is recommended to preserve crossing-time precision.
+tracker_config: backend/app/configs/trackers/botsort_standard.yaml
+motorcycle_confidence: 0.08
+motorcycle_nms_iou: 0.65
+motorcycle_image_size: 1280

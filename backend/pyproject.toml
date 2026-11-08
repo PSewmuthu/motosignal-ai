@@ -1,0 +1,21 @@
+[project]
+name = "motosignal-ai-backend"
+version = "1.0.0"
+description = "Evidence-driven motorcycle red-light event analysis API"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "fastapi==0.115.12", "uvicorn[standard]==0.34.2", "SQLAlchemy==2.0.40",
+  "pydantic==2.11.4", "python-multipart==0.0.20", "opencv-python-headless==4.11.0.86", "numpy==2.2.5"
+]
+
+[project.optional-dependencies]
+ml = ["ultralytics==8.4.203", "paddleocr==2.10.0", "paddlepaddle==3.0.0", "easyocr==1.7.2"]
+test = ["pytest==8.3.5", "httpx==0.28.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"

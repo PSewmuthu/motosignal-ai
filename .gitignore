@@ -17,8 +17,25 @@ data/
 # Environment Variable files
 .env
 .env.*
+!*.example
 
 # Experiment tracking files
 datasets/
+runs/
 wandb/
+notebooks/outputs/
 datasets.yaml
+notebooks/*.pt
+
+# PyTest cache
+.pytest_cache/
+
+# Node modules
+node_modules/
+
+# Node package lock files
+package-lock.json
+
+# TypeScript build output
+dist/
+tsconfig.tsbuildinfo
