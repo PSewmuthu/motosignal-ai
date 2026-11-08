@@ -11,7 +11,8 @@ class Settings:
     data_dir = Path(os.getenv("MOTOSIGNAL_DATA_DIR", "./data")).resolve()
     database_url = os.getenv(
         "DATABASE_URL", f"sqlite:///{(data_dir / 'motosignal.db').as_posix()}")
-    motorcycle_model = os.getenv("MOTOSIGNAL_MOTORCYCLE_MODEL", "").strip()
+    motorcycle_model = os.getenv(
+        "MOTOSIGNAL_MOTORCYCLE_MODEL", "yolov12n.pt").strip()
     motorcycle_class_id = int(os.getenv("MOTOSIGNAL_MOTORCYCLE_CLASS_ID", "3"))
     motorcycle_confidence = float(
         os.getenv("MOTOSIGNAL_MOTORCYCLE_CONFIDENCE", "0.08"))
@@ -22,7 +23,6 @@ class Settings:
     yolo_device = os.getenv("MOTOSIGNAL_YOLO_DEVICE", "").strip() or None
     tracker_config = os.getenv(
         "MOTOSIGNAL_TRACKER_CONFIG", "configs/trackers/botsort_standard.yaml").strip()
-    plate_model = os.getenv("MOTOSIGNAL_PLATE_MODEL", "").strip()
     enable_ocr = os.getenv("MOTOSIGNAL_ENABLE_OCR", "false").lower() == "true"
     frame_stride = max(1, int(os.getenv("MOTOSIGNAL_FRAME_STRIDE", "1")))
     max_upload_mb = max(10, int(os.getenv("MOTOSIGNAL_MAX_UPLOAD_MB", "500")))

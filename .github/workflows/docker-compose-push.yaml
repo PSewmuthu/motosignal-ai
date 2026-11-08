@@ -49,9 +49,9 @@ jobs:
           IMAGE_TAG: ${{ env.TAG }}
         run: docker compose push
 
-      # (Optional) Also tag and push as "latest" if on the main branch
+      # (Optional) Also tag and push as "latest" if on the master branch
       - name: Push Latest Image
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           IMAGE_TAG: latest

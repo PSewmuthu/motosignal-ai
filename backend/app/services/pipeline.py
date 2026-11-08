@@ -5,6 +5,7 @@ import uuid
 
 import cv2
 import numpy as np
+from huggingface_hub import hf_hub_download
 
 from app.core.config import settings
 from app.services.association.vehicle_matcher import match_rear_track
@@ -76,14 +77,16 @@ def _detect_models(diagnostics: dict):
     else:
         diagnostics["motorcycle_detector"] = "not_configured"
 
-    if settings.plate_model:
-        try:
-            plate = UltralyticsDetector(
-                settings.plate_model, class_ids=None, confidence=0.20)
-        except Exception as exc:
-            diagnostics["plate_detector"] = f"unavailable: {exc}"
-    else:
-        diagnostics["plate_detector"] = "not_configured"
+    try:
+        plate_model_path = hf_hub_download(
+            repo_id="ishaqinu/yolo26n-license-plate-detection",
+            filename="alpr_26n.pt"
+        )
+
+        plate = UltralyticsDetector(
+            plate_model_path, class_ids=None, confidence=0.20)
+    except Exception as exc:
+        diagnostics["plate_detector"] = f"unavailable: {exc}"
 
     if settings.enable_ocr:
         try:
@@ -320,10 +323,6 @@ def run_video_analysis(traffic_video: str, rear_video: str | None, job_id: str, 
     if not settings.motorcycle_model:
         diagnostics.setdefault("warnings", []).append(
             "Motorcycle model is not configured; no genuine motorcycle detections were produced")
-
-    if not settings.plate_model:
-        diagnostics.setdefault("warnings", []).append(
-            "Rear-plate detector is not configured; automatic plate localization is unavailable")
 
     if progress_callback:
         progress_callback(

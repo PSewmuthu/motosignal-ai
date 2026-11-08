@@ -5,3 +5,8 @@ pydantic==2.11.4
 python-multipart==0.0.20
 opencv-python-headless==4.11.0.86
 numpy==2.2.5
+huggingface_hub==2.4.0
+ultralytics==8.4.203
+paddleocr==2.10.0
+paddlepaddle==3.0.0
+easyocr==1.7.2

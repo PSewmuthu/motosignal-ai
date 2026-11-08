@@ -61,7 +61,6 @@ export default function App() {
 	const [selected, setSelected] = useState<string | null>(null);
 	const [health, setHealth] = useState<{
 		motorcycle_model_configured: boolean;
-		plate_model_configured: boolean;
 		ocr_enabled: boolean;
 	} | null>(null);
 	const [line, setLine] = useState({
@@ -518,18 +517,6 @@ export default function App() {
 									}
 								>
 									{health?.motorcycle_model_configured
-										? "Configured"
-										: "Not configured"}
-								</b>
-							</div>
-							<div className="readiness-row">
-								<span>Rear plate detector</span>
-								<b
-									className={
-										health?.plate_model_configured ? "ready" : "missing"
-									}
-								>
-									{health?.plate_model_configured
 										? "Configured"
 										: "Not configured"}
 								</b>
