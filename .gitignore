@@ -29,3 +29,13 @@ notebooks/*.pt
 
 # PyTest cache
 .pytest_cache/
+
+# Node modules
+node_modules/
+
+# Node package lock files
+package-lock.json
+
+# TypeScript build output
+dist/
+tsconfig.tsbuildinfo
