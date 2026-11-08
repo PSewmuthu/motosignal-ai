@@ -88,6 +88,5 @@ export const getHealth = () =>
 	request<{
 		status: string;
 		motorcycle_model_configured: boolean;
-		plate_model_configured: boolean;
 		ocr_enabled: boolean;
 	}>("/api/health");

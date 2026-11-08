@@ -38,11 +38,9 @@ Uploaded videos, SQLite data, and event evidence are stored under `data/` throug
 3. Set model paths in `.env`:
 
 ```dotenv
-MOTOSIGNAL_MOTORCYCLE_MODEL=/models/motorcycle.pt
+MOTOSIGNAL_MOTORCYCLE_MODEL=yolo12n.pt
 MOTOSIGNAL_MOTORCYCLE_CLASS_ID=3
-MOTOSIGNAL_PLATE_MODEL=/models/license_plate.pt
 MOTOSIGNAL_ENABLE_OCR=true
-INSTALL_ML_DEPS=true
 ```
 
 `MOTOSIGNAL_MOTORCYCLE_CLASS_ID=3` is the COCO motorcycle class index. Change it to the motorcycle class index used by your fine-tuned checkpoint. The plate detector uses all model classes; ideally export a plate-only detector.
@@ -66,8 +64,6 @@ python -m venv .venv
 # Windows: .venv\\Scripts\\activate
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
-# Optional, when you have model weights:
-# pip install -r requirements-ml.txt
 MOTOSIGNAL_DATA_DIR=../data uvicorn app.main:app --reload --port 8000
 ```
 
@@ -183,20 +179,7 @@ MOTOSIGNAL_MOTORCYCLE_NMS_IOU=0.65
 MOTOSIGNAL_MOTORCYCLE_IMAGE_SIZE=1280
 MOTOSIGNAL_YOLO_DEVICE=0
 MOTOSIGNAL_FRAME_STRIDE=1
-INSTALL_ML_DEPS=true
 ```
-
-For a custom motorcycle-only checkpoint, set its motorcycle class index (often `0`, but verify the training `data.yaml`). For a COCO checkpoint, motorcycle is class `3`. Keep `MOTOSIGNAL_FRAME_STRIDE=1` for accurate stop-line crossing times. More detail in [model documentation](docs/model_documentation.md).
-
-You can test the tracker independently before running the full application:
-
-```bash
-pip install -r backend/requirements-ml.txt
-python scripts/track_video.py --source video.mp4 --weights models/motorcycle.pt \
-  --class-id 3 --stride 1 --device 0
-```
-
-The script writes `runs/tracking/tracked.mp4` and `runs/tracking/tracks.csv` for visual inspection and evaluation. It does not imply that tracking is accurate until ID switches, fragmentation and track recall have been measured on labelled video.
 
 ## Validation and evaluation helpers
 

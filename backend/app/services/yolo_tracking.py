@@ -46,7 +46,7 @@ class UltralyticsTrackerFactory:
             from ultralytics import YOLO
         except ImportError as exc:
             raise YOLOTrackingUnavailable(
-                "Install the optional ML dependencies: pip install -r requirements-ml.txt"
+                "Install the ultralytics package to use YOLO tracking: pip install ultralytics"
             ) from exc
 
         if not 0.0 <= config.confidence <= 1.0:

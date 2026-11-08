@@ -35,7 +35,6 @@ def _job_dict(job: ProcessingJob):
 def health():
     return {"status": "ok", "service": "motosignal-api",
             "motorcycle_model_configured": bool(settings.motorcycle_model and Path(settings.motorcycle_model).is_file()),
-            "plate_model_configured": bool(settings.plate_model and Path(settings.plate_model).is_file()),
             "ocr_enabled": settings.enable_ocr}
 
 

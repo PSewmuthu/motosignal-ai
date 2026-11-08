@@ -45,7 +45,6 @@ def test_same_camera_pipeline_emits_evidence_backed_red_event(tmp_path, monkeypa
 
     monkeypatch.setattr(settings, "data_dir", tmp_path / "runtime")
     monkeypatch.setattr(settings, "motorcycle_model", "/test/motorcycle.pt")
-    monkeypatch.setattr(settings, "plate_model", "/test/plate.pt")
     monkeypatch.setattr(settings, "enable_ocr", True)
 
     def fake_models(diagnostics):
