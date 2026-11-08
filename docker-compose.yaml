@@ -1,0 +1,47 @@
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        INSTALL_ML_DEPS: "${INSTALL_ML_DEPS:-false}"
+    environment:
+      MOTOSIGNAL_DATA_DIR: /app/data
+      MOTOSIGNAL_MOTORCYCLE_MODEL: ${MOTOSIGNAL_MOTORCYCLE_MODEL:-}
+      MOTOSIGNAL_MOTORCYCLE_CLASS_ID: ${MOTOSIGNAL_MOTORCYCLE_CLASS_ID:-3}
+      MOTOSIGNAL_MOTORCYCLE_CONFIDENCE: ${MOTOSIGNAL_MOTORCYCLE_CONFIDENCE:-0.20}
+      MOTOSIGNAL_MOTORCYCLE_NMS_IOU: ${MOTOSIGNAL_MOTORCYCLE_NMS_IOU:-0.65}
+      MOTOSIGNAL_MOTORCYCLE_IMAGE_SIZE: ${MOTOSIGNAL_MOTORCYCLE_IMAGE_SIZE:-1280}
+      MOTOSIGNAL_YOLO_DEVICE: ${MOTOSIGNAL_YOLO_DEVICE:-}
+      MOTOSIGNAL_TRACKER_CONFIG: ${MOTOSIGNAL_TRACKER_CONFIG:-configs/trackers/botsort_standard.yaml}
+      MOTOSIGNAL_PLATE_MODEL: ${MOTOSIGNAL_PLATE_MODEL:-}
+      MOTOSIGNAL_ENABLE_OCR: ${MOTOSIGNAL_ENABLE_OCR:-false}
+      MOTOSIGNAL_FRAME_STRIDE: ${MOTOSIGNAL_FRAME_STRIDE:-1}
+      MOTOSIGNAL_MAX_UPLOAD_MB: ${MOTOSIGNAL_MAX_UPLOAD_MB:-500}
+    volumes:
+      - ./data:/app/data
+      - ./models:/models:ro
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health')",
+        ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 25s
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

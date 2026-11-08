@@ -1,0 +1,16 @@
+.git
+.venv
+node_modules
+__pycache__
+.pytest_cache
+.ipynb_checkpoints
+data/raw
+data/processed
+data/samples
+models/*.pt
+models/*.onnx
+models/*.engine
+*.mp4
+*.mov
+*.avi
+*.mkv
