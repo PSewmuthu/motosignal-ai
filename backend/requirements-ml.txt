@@ -1,0 +1,6 @@
+# Install only when your model training/inference artifacts require these packages.
+# Check the licensing terms of the installed versions before distributing deployments.
+ultralytics==8.4.203
+paddleocr==2.10.0
+paddlepaddle==3.0.0
+easyocr==1.7.2
