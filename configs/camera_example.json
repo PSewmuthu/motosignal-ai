@@ -1,0 +1,9 @@
+{
+  "camera_id": "intersection-main",
+  "frame_width": 1920,
+  "frame_height": 1080,
+  "stop_line": [{"x": 0.08, "y": 0.52}, {"x": 0.92, "y": 0.52}],
+  "approach_side": "either",
+  "direction": "northbound",
+  "notes": "Replace all example values after inspecting and calibrating the actual camera frame."
+}
