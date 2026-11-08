@@ -26,3 +26,6 @@ wandb/
 notebooks/outputs/
 datasets.yaml
 notebooks/*.pt
+
+# PyTest cache
+.pytest_cache/
