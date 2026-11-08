@@ -1,6 +1,6 @@
 [project]
 name = "motosignal-ai-backend"
-version = "0.1.0"
+version = "1.0.0"
 description = "Evidence-driven motorcycle red-light event analysis API"
 requires-python = ">=3.11,<3.13"
 dependencies = [

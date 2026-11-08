@@ -1,6 +1,6 @@
 {
 	"name": "motosignal-ai-dashboard",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "MotoSignal AI web application front-end",
 	"private": true,
 	"type": "module",

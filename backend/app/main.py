@@ -8,7 +8,7 @@ from app.db.session import Base, engine
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="MotoSignal AI API", version="0.1.0",
+app = FastAPI(title="MotoSignal AI API", version="1.0.0",
               description="Evidence-driven motorcycle red-light event analysis and rear-plate recognition.")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:8080", "http://127.0.0.1:8080", "http://localhost:5173"],
                    allow_credentials=False, allow_methods=["GET", "POST", "OPTIONS"], allow_headers=["*"])
