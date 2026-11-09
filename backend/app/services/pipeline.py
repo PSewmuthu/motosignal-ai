@@ -5,11 +5,10 @@ import uuid
 
 import cv2
 import numpy as np
-from huggingface_hub import hf_hub_download
 
 from app.core.config import settings
 from app.services.association.vehicle_matcher import match_rear_track
-from app.services.detectors import HybridPlateOCR, UltralyticsDetector
+from app.services.detectors import HybridPlateOCR, UltralyticsDetector, load_numberplate_detector_weights
 from app.services.yolo_tracking import YOLOTrackingConfig, UltralyticsTrackerFactory
 from app.services.events.classifier import classify_event
 from app.services.plates.consensus import multi_frame_consensus
@@ -78,10 +77,7 @@ def _detect_models(diagnostics: dict):
         diagnostics["motorcycle_detector"] = "not_configured"
 
     try:
-        plate_model_path = hf_hub_download(
-            repo_id="ishaqinu/yolo26n-license-plate-detection",
-            filename="alpr_26n.pt"
-        )
+        plate_model_path = load_numberplate_detector_weights()
 
         plate = UltralyticsDetector(
             plate_model_path, class_ids=None, confidence=0.20)
