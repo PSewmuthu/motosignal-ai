@@ -6,6 +6,25 @@ class DetectorUnavailable(RuntimeError):
     pass
 
 
+def load_numberplate_detector_weights() -> str:
+    """Return the path to the pretrained numberplate detector weights.
+
+    Raises:
+        DetectorUnavailable: If the pretrained weights are not found.
+    """
+    from huggingface_hub import hf_hub_download
+
+    weights_path = hf_hub_download(
+        repo_id="ishaqinu/yolo26n-license-plate-detection",
+        filename="alpr_26n.pt"
+    )
+    if not weights_path.is_file():
+        raise DetectorUnavailable(
+            f"Numberplate detector weights not found: {weights_path}")
+
+    return str(weights_path)
+
+
 class UltralyticsDetector:
     """Optional YOLO adapter. Model weights are supplied by the operator, not bundled."""
 
