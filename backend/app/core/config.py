@@ -12,7 +12,7 @@ class Settings:
     database_url = os.getenv(
         "DATABASE_URL", f"sqlite:///{(data_dir / 'motosignal.db').as_posix()}")
     motorcycle_model = os.getenv(
-        "MOTOSIGNAL_MOTORCYCLE_MODEL", "yolov12n.pt").strip()
+        "MOTOSIGNAL_MOTORCYCLE_MODEL", "yolo12n.pt").strip()
     motorcycle_class_id = int(os.getenv("MOTOSIGNAL_MOTORCYCLE_CLASS_ID", "3"))
     motorcycle_confidence = float(
         os.getenv("MOTOSIGNAL_MOTORCYCLE_CONFIDENCE", "0.08"))
