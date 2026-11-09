@@ -1,15 +1,10 @@
 from ultralytics import YOLO
 from huggingface_hub import hf_hub_download
 
+from app.core.config import settings
+
 
 def load_models():
-    try:
-        # In case of running the script in a Docker container
-        from core.config import settings
-    except:
-        # In case of running the script in a local environment
-        from app.core.config import settings
-
     motorcycle_model = settings.motorcycle_model
     motorcycle_detection_model = YOLO(motorcycle_model)
 
